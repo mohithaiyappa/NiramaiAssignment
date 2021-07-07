@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NiramaiAssignment</string>
+    <string name="project_name">Project Name</string>
+    <string name="created_on">Created on</string>
 </resources>
