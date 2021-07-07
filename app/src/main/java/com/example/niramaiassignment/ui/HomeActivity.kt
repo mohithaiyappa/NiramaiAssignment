@@ -1,4 +1,4 @@
-package com.example.niramaiassignment
+package com.example.niramaiassignment.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
