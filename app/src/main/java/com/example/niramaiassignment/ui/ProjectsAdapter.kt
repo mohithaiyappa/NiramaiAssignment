@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.niramaiassignment.data.Project
 import com.example.niramaiassignment.databinding.LayoutItemProjectBinding
@@ -13,22 +15,23 @@ import java.util.Locale
 
 class ProjectsAdapter(
     val context: Context,
-    var projects: List<Project>,
     val listener: RecyclerviewClickListener
-) : RecyclerView.Adapter<ProjectsAdapter.ViewHolder>() {
+) : ListAdapter<Project,ProjectsAdapter.ViewHolder>(DIFF_UTIL) {
+
+    companion object{
+        val DIFF_UTIL = object : DiffUtil.ItemCallback<Project>() {
+            override fun areItemsTheSame(oldItem: Project, newItem: Project): Boolean {
+                return oldItem == newItem
+            }
+            override fun areContentsTheSame(oldItem: Project, newItem: Project): Boolean {
+                return oldItem.uid == newItem.uid
+            }
+        }
+    }
 
     private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.getDefault())
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
-
-    fun update( updatedList: List<Project>){
-        projects = updatedList
-        notifyDataSetChanged()
-    }
-
-    override fun getItemCount(): Int {
-        return projects.size
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutItemProjectBinding.inflate(LayoutInflater.from(context),parent,false).root
@@ -38,7 +41,7 @@ class ProjectsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // populate data
         LayoutItemProjectBinding.bind(holder.itemView).apply {
-            val project = projects[position]
+            val project = getItem(position)
             fieldProjectName.text = project.projectName
             fieldDate.text = dateFormat.format(project.dateOfCreation!!)
             fieldCompanyName.text = project.companyName

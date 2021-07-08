@@ -65,12 +65,13 @@ class HomeActivity : AppCompatActivity() {
 
         // setup recyclerview
         projectRecyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ProjectsAdapter(context = this, projects = emptyList(), listener = recyclerviewClickListener)
+        adapter = ProjectsAdapter(context = this, listener = recyclerviewClickListener)
         projectRecyclerView.adapter = adapter
+        adapter.submitList(emptyList())
 
 
         viewModel.projects.observe(this) { list ->
-            adapter.update(list)
+            adapter.submitList(list)
         }
         viewModel.companies.observe(this) {
             addCompanyChips(it)
