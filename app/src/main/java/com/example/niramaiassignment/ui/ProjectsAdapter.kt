@@ -7,13 +7,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.niramaiassignment.data.Project
 import com.example.niramaiassignment.databinding.LayoutItemProjectBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ProjectsAdapter(
     val context: Context,
-    val projects: List<Project>
+    var projects: List<Project>
 ) : RecyclerView.Adapter<ProjectsAdapter.ViewHolder>() {
 
+    private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.getDefault())
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    fun update( updatedList: List<Project>){
+        projects = updatedList
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount(): Int {
         return projects.size
@@ -27,7 +36,11 @@ class ProjectsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // populate data
         LayoutItemProjectBinding.bind(holder.itemView).apply {
-            labelProjectName.text = "Project Name $position"
+            val project = projects[position]
+            projectName.text = project.projectName
+            createdOnDate.text = dateFormat.format(project.dateOfCreation!!)
+            shortDesc.text = project.shortDescription
+
         }
     }
 }

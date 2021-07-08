@@ -28,6 +28,7 @@ class UpdateDetailsViewModel : ViewModel() {
         withContext(Dispatchers.IO){
             project?.let { proj ->
                 database?.projectDao()?.addProject(proj)
+                _isUpdateSuccessful.postValue(true)
             }
         }
     }

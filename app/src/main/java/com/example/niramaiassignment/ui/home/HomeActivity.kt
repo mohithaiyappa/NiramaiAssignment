@@ -1,18 +1,23 @@
-package com.example.niramaiassignment.ui
+package com.example.niramaiassignment.ui.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.niramaiassignment.NiramaiApplication
 import com.example.niramaiassignment.databinding.ActivityMainBinding
+import com.example.niramaiassignment.ui.ProjectsAdapter
 import com.example.niramaiassignment.ui.updatedetails.UpdateDetailsActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: HomeViewModel by viewModels()
+    private lateinit var adapter:ProjectsAdapter
 
     private val projectRecyclerView: RecyclerView
         get() = binding.recyclerView
@@ -25,11 +30,24 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel.database = (applicationContext as NiramaiApplication).database
+
         // setup recyclerview
         projectRecyclerView.layoutManager = LinearLayoutManager(this)
-        projectRecyclerView.adapter = ProjectsAdapter(context = this, projects = emptyList())
+        adapter = ProjectsAdapter(context = this, projects = emptyList())
+        projectRecyclerView.adapter = adapter
+
+
+        viewModel.projects.observe(this) { list ->
+            adapter.update(list)
+        }
 
         fab.setOnClickListener(this::onFabClicked)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.updateProjects()
     }
 
     // Listeners

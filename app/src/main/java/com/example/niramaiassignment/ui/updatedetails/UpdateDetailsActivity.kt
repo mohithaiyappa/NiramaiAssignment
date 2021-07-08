@@ -14,6 +14,7 @@ import com.example.niramaiassignment.utils.removeHorizontalInsets
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 class UpdateDetailsActivity : AppCompatActivity() {
 
@@ -38,7 +39,7 @@ class UpdateDetailsActivity : AppCompatActivity() {
             .setTitleText("Select date")
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
-    private val dateFormat = SimpleDateFormat("d MMM yyyy")
+    private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +75,6 @@ class UpdateDetailsActivity : AppCompatActivity() {
     private fun onDateSelected(time: Long){
         val selected = Date(time)
         createdOnDate.text = dateFormat.format(selected)
-        viewModel.project?.dateOfCreation = selected
     }
     private fun updateProject(view: View){
         viewModel.project?.let { project->
@@ -84,6 +84,7 @@ class UpdateDetailsActivity : AppCompatActivity() {
             project.companyName = companyName.text.toString()
             project.shortDescription = shortDesc.text.toString()
             project.longDescription = longDesc.text.toString()
+            project.dateOfCreation = dateFormat.parse(createdOnDate.text.toString())
         }
         viewModel.update()
     }

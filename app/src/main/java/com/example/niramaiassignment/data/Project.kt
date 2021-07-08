@@ -31,9 +31,9 @@ data class Project(
     interface ProjectDao{
 
         @Insert(onConflict = OnConflictStrategy.REPLACE)
-        fun addProject(project: Project)
+        suspend fun addProject(project: Project)
 
         @Query("SELECT * FROM project")
-        fun getAllProjects(): List<Project>
+        suspend fun getAllProjects(): List<Project>
     }
 }
