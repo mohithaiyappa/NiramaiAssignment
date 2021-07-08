@@ -8,9 +8,11 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.niramaiassignment.NiramaiApplication
+import com.example.niramaiassignment.data.Project
 import com.example.niramaiassignment.databinding.ActivityMainBinding
 import com.example.niramaiassignment.ui.ProjectsAdapter
 import com.example.niramaiassignment.ui.updatedetails.UpdateDetailsActivity
+import com.example.niramaiassignment.utils.RecyclerviewClickListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeActivity : AppCompatActivity() {
@@ -24,6 +26,19 @@ class HomeActivity : AppCompatActivity() {
     private val fab: FloatingActionButton
         get() = binding.floatingActionButton
 
+    private val recyclerviewClickListener: RecyclerviewClickListener = object :
+        RecyclerviewClickListener{
+        override fun onItemClick(project: Project) {
+            val i = Intent(this@HomeActivity, UpdateDetailsActivity::class.java)
+            i.putExtra("project",project)
+            startActivity(i)
+        }
+
+        override fun onLongClick(project: Project) {
+
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,7 +49,7 @@ class HomeActivity : AppCompatActivity() {
 
         // setup recyclerview
         projectRecyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ProjectsAdapter(context = this, projects = emptyList())
+        adapter = ProjectsAdapter(context = this, projects = emptyList(), listener = recyclerviewClickListener)
         projectRecyclerView.adapter = adapter
 
 
