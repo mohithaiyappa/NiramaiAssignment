@@ -17,7 +17,7 @@ class HomeViewModel : ViewModel() {
 
     var database: AppDatabase? = null
 
-    fun updateProjects(){
+    fun loadAllProjects(){
         viewModelScope.launch(Dispatchers.IO) {
             val list: List<Project> = database?.projectDao()?.getAllProjects() ?: emptyList()
             _projects.postValue(list)
