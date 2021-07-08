@@ -39,9 +39,10 @@ class ProjectsAdapter(
         // populate data
         LayoutItemProjectBinding.bind(holder.itemView).apply {
             val project = projects[position]
-            projectName.text = project.projectName
-            createdOnDate.text = dateFormat.format(project.dateOfCreation!!)
-            shortDesc.text = project.shortDescription
+            fieldProjectName.text = project.projectName
+            fieldDate.text = dateFormat.format(project.dateOfCreation!!)
+            fieldCompanyName.text = project.companyName
+            fieldShortDesc.text = project.shortDescription
             root.setOnClickListener{
                 listener.onItemClick(project)
             }

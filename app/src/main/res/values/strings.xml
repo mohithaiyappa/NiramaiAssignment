@@ -7,4 +7,6 @@
     <string name="update_project">UPDATE PROJECT</string>
     <string name="long_description">Long Description</string>
     <string name="fab_content_desc">create project</string>
+    <string name="project_label">Project</string>
+    <string name="company_label">Company</string>
 </resources>

@@ -15,6 +15,25 @@
         <item name="android:letterSpacing">-0.03</item>
         <item name="android:lineSpacingExtra">12.5sp</item>
     </style>
+
+    <style name="LabelTextView1" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/ibm_plex_sans_semi_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ebonyClay</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+    <style name="LabelTextView2" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/ibm_plex_sans_semi_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ebonyClay</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+    <style name="TextField" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/ibm_plex_sans</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/ebonyClay</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
     <style name="EditText1" parent="Widget.AppCompat.EditText">
         <item name="fontFamily">@font/ibm_plex_sans</item>
         <item name="android:textSize">23sp</item>
