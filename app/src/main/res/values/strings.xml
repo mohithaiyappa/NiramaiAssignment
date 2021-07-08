@@ -9,4 +9,11 @@
     <string name="fab_content_desc">create project</string>
     <string name="project_label">Project</string>
     <string name="company_label">Company</string>
+    <string name="content_description_search">search projects</string>
+    <string name="search">search</string>
+    <string name="page_title">Projects</string>
+    <string name="filter">filter</string>
+    <string name="content_description_filter">filter projects</string>
+    <string name="sort">sort</string>
+    <string name="content_description_sort">sort projects</string>
 </resources>

@@ -3,16 +3,19 @@ package com.example.niramaiassignment.ui.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.niramaiassignment.NiramaiApplication
+import com.example.niramaiassignment.R
 import com.example.niramaiassignment.data.Project
 import com.example.niramaiassignment.databinding.ActivityMainBinding
 import com.example.niramaiassignment.ui.ProjectsAdapter
 import com.example.niramaiassignment.ui.updatedetails.UpdateDetailsActivity
 import com.example.niramaiassignment.utils.RecyclerviewClickListener
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeActivity : AppCompatActivity() {
@@ -25,6 +28,8 @@ class HomeActivity : AppCompatActivity() {
         get() = binding.recyclerView
     private val fab: FloatingActionButton
         get() = binding.floatingActionButton
+    private val appBar: MaterialToolbar
+        get() = binding.topAppBar
 
     private val recyclerviewClickListener: RecyclerviewClickListener = object :
         RecyclerviewClickListener{
@@ -57,7 +62,8 @@ class HomeActivity : AppCompatActivity() {
             adapter.update(list)
         }
 
-        fab.setOnClickListener(this::onFabClicked)
+        fab.setOnClickListener (this::onFabClicked)
+        appBar.setOnMenuItemClickListener (this::onMenuItemClicked)
     }
 
     override fun onResume() {
@@ -69,5 +75,20 @@ class HomeActivity : AppCompatActivity() {
     private fun onFabClicked(view: View){
         val i = Intent(this, UpdateDetailsActivity::class.java)
         startActivity(i)
+    }
+    private fun onMenuItemClicked(menuItem: MenuItem): Boolean{
+        return when (menuItem.itemId) {
+            R.id.search -> {
+
+                true
+            }
+            R.id.filter -> {
+                true
+            }
+            R.id.sort   -> {
+                true
+            }
+            else    -> false
+        }
     }
 }
