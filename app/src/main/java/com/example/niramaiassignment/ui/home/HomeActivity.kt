@@ -3,8 +3,11 @@ package com.example.niramaiassignment.ui.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -79,6 +82,23 @@ class HomeActivity : AppCompatActivity() {
     private fun onMenuItemClicked(menuItem: MenuItem): Boolean{
         return when (menuItem.itemId) {
             R.id.search -> {
+                val searchView = menuItem.actionView as androidx.appcompat.widget.SearchView
+                searchView.queryHint = "Search Projects"
+                searchView.setIconifiedByDefault(false)
+                searchView.isIconified = false
+                searchView.isSubmitButtonEnabled = true
+
+                searchView.setOnQueryTextListener( object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        query?.let { text ->
+                            viewModel.search(text)
+                        }
+                        return false
+                    }
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        return false
+                    }
+                })
 
                 true
             }
