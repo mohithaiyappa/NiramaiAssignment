@@ -15,6 +15,10 @@ class HomeViewModel : ViewModel() {
     val projects: LiveData<List<Project>>
         get() = _projects
 
+    private val _companies: MutableLiveData<List<String>> = MutableLiveData(emptyList())
+    val companies: LiveData<List<String>>
+        get() = _companies
+
     var database: AppDatabase? = null
 
     fun loadAllProjects(){
@@ -23,9 +27,21 @@ class HomeViewModel : ViewModel() {
             _projects.postValue(list)
         }
     }
+    fun loadCompanyNames(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val list: List<String> = database?.projectDao()?.getAllCompanyNames() ?: emptyList()
+            _companies.postValue(list)
+        }
+    }
     fun search(text: String?){
         viewModelScope.launch(Dispatchers.IO) {
             val list: List<Project> = database?.projectDao()?.search("%$text%") ?: emptyList()
+            _projects.postValue(list)
+        }
+    }
+    fun filterByCompany(company: String?){
+        viewModelScope.launch(Dispatchers.IO) {
+            val list: List<Project> = database?.projectDao()?.getAllProjectsOfCompany(company) ?: emptyList()
             _projects.postValue(list)
         }
     }

@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.HorizontalScrollView
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.niramaiassignment.NiramaiApplication
@@ -16,6 +19,8 @@ import com.example.niramaiassignment.ui.ProjectsAdapter
 import com.example.niramaiassignment.ui.updatedetails.UpdateDetailsActivity
 import com.example.niramaiassignment.utils.RecyclerviewClickListener
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeActivity : AppCompatActivity() {
@@ -30,6 +35,12 @@ class HomeActivity : AppCompatActivity() {
         get() = binding.floatingActionButton
     private val appBar: MaterialToolbar
         get() = binding.topAppBar
+    private val chipScrollView: HorizontalScrollView
+        get() = binding.chipScrollView
+    private val chipGroup: ChipGroup
+        get() = binding.chipGroup
+
+    private var canFilter: Boolean = false
 
     private val recyclerviewClickListener: RecyclerviewClickListener = object :
         RecyclerviewClickListener{
@@ -61,20 +72,46 @@ class HomeActivity : AppCompatActivity() {
         viewModel.projects.observe(this) { list ->
             adapter.update(list)
         }
+        viewModel.companies.observe(this) {
+            addCompanyChips(it)
+        }
 
         fab.setOnClickListener (this::onFabClicked)
         appBar.setOnMenuItemClickListener (this::onMenuItemClicked)
+        chipGroup.setOnCheckedChangeListener(this::onCheckChanged)
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.loadAllProjects()
+        viewModel.loadCompanyNames()
+    }
+
+    private fun addCompanyChips(list: List<String>){
+        chipGroup.removeAllViews()
+        chipGroup.isSingleSelection = true
+        for (companyName in list)
+            chipGroup.addView(getCompanyChip(companyName))
+    }
+    private fun getCompanyChip(companyName: String) = Chip(this).apply {
+        text = companyName
+        isCheckable = true
+        id = ViewCompat.generateViewId()
+        setOnClickListener {
+            canFilter = true
+            viewModel.filterByCompany(companyName)
+        }
     }
 
     // Listeners
     private fun onFabClicked(view: View){
         val i = Intent(this, UpdateDetailsActivity::class.java)
         startActivity(i)
+    }
+    private fun onCheckChanged(chipGroup: ChipGroup, id: Int){
+        if (id == View.NO_ID && canFilter){
+            viewModel.loadAllProjects()
+        }
     }
     private fun onMenuItemClicked(menuItem: MenuItem): Boolean{
         return when (menuItem.itemId) {
@@ -100,6 +137,12 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
             R.id.filter -> {
+                //show or hide scroll view
+                if(chipScrollView.isVisible)
+                    chipScrollView.visibility = View.GONE
+                else
+                    chipScrollView.visibility = View.VISIBLE
+
                 true
             }
             R.id.sort   -> {

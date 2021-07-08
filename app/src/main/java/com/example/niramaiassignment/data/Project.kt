@@ -41,5 +41,11 @@ data class Project(
 
         @Query("SELECT * FROM project ORDER BY date_of_creation ASC, project_name ASC")
         suspend fun sortByDate(): List<Project>
+
+        @Query("SELECT DISTINCT company_name FROM project")
+        suspend fun getAllCompanyNames(): List<String>
+
+        @Query("SELECT * FROM project WHERE company_name IS :company")
+        suspend fun getAllProjectsOfCompany(company: String?): List<Project>
     }
 }
