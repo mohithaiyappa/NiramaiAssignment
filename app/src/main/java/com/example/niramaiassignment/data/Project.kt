@@ -1,13 +1,16 @@
 package com.example.niramaiassignment.data
 
+import android.os.Parcelable
 import androidx.room.*
+import kotlinx.parcelize.Parcelize
 import java.util.Date
 
 @Entity
+@Parcelize
 data class Project(
 
     @PrimaryKey(autoGenerate = true)
-    val uid: Long,
+    val uid: Long = 0,
 
     @ColumnInfo(name = "project_name")
     var projectName : String? = null,
@@ -23,7 +26,7 @@ data class Project(
 
     @ColumnInfo(name = "date_of_creation")
     var dateOfCreation  : Date? = null
-) {
+) : Parcelable {
     @Dao
     interface ProjectDao{
 

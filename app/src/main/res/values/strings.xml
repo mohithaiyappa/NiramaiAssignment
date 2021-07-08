@@ -2,4 +2,8 @@
     <string name="app_name">NiramaiAssignment</string>
     <string name="project_name">Project Name</string>
     <string name="created_on">Created on</string>
+    <string name="company_name">Company Name</string>
+    <string name="short_description">Short Description</string>
+    <string name="update_project">UPDATE PROJECT</string>
+    <string name="long_description">Long Description</string>
 </resources>

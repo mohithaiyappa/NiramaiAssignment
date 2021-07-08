@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextViewHeader4" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/ibm_plex_sans_semi_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ebonyClay</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+    <style name="TextViewDate" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/ibm_plex_sans</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">@color/ebonyClay</item>
+        <item name="android:textColorHint">@color/nepal</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">12.5sp</item>
+    </style>
+    <style name="EditText1" parent="Widget.AppCompat.EditText">
+        <item name="fontFamily">@font/ibm_plex_sans</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">@color/ebonyClay</item>
+        <item name="android:textColorHint">@color/nepal</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">12.5sp</item>
+    </style>
+    <style name="BlueButton" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/ibm_plex_sans_semi_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="backgroundTint">@color/royalBlue</item>
+    </style>
+</resources>
