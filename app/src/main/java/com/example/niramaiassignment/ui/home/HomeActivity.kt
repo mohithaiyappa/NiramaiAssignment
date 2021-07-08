@@ -106,6 +106,7 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
             R.id.sort   -> {
+                viewModel.sortByDate()
                 true
             }
             else    -> false

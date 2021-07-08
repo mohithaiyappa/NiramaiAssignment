@@ -37,6 +37,9 @@ data class Project(
         suspend fun getAllProjects(): List<Project>
 
         @Query("SELECT * FROM project WHERE project_name LIKE :search")
-        fun search(search: String?): List<Project>
+        suspend fun search(search: String?): List<Project>
+
+        @Query("SELECT * FROM project ORDER BY date_of_creation ASC, project_name ASC")
+        suspend fun sortByDate(): List<Project>
     }
 }

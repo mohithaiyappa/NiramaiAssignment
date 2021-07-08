@@ -29,4 +29,10 @@ class HomeViewModel : ViewModel() {
             _projects.postValue(list)
         }
     }
+    fun sortByDate(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val list: List<Project> = database?.projectDao()?.sortByDate() ?: emptyList()
+            _projects.postValue(list)
+        }
+    }
 }
