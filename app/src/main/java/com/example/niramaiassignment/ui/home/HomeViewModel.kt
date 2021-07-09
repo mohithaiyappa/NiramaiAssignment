@@ -30,6 +30,16 @@ class HomeViewModel : ViewModel() {
     fun deleteProject(project: Project){
         viewModelScope.launch(Dispatchers.IO) {
             database?.projectDao()?.deleteProject(project)
+            val list = ArrayList<Project>()
+            _projects.value?.let { values ->
+                for (p in values){
+                    if(p.uid == project.uid)
+                        continue
+
+                    list.add(p)
+                }
+            }
+            _projects.postValue(list)
         }
     }
     fun loadCompanyNames(){
