@@ -10,8 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NiramaiAssignment">
-        <activity android:name=".ui.updatedetails.UpdateDetailsActivity"></activity>
-        <activity android:name=".ui.home.HomeActivity">
+        <activity android:name=".ui.updatedetails.UpdateDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.home.HomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
