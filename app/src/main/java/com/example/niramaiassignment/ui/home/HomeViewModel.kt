@@ -51,4 +51,10 @@ class HomeViewModel : ViewModel() {
             _projects.postValue(list)
         }
     }
+    fun sortByName(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val list: List<Project> = database?.projectDao()?.sortByName() ?: emptyList()
+            _projects.postValue(list)
+        }
+    }
 }

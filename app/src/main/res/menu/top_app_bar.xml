@@ -10,9 +10,15 @@
         app:showAsAction="always|collapseActionView" />
 
     <item
-        android:id="@+id/sort"
+        android:id="@+id/sortByDate"
         android:icon="@drawable/ic_sort"
-        android:title="@string/sort"
+        android:title="@string/sortByDate"
+        android:contentDescription="@string/content_description_sort"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/sortByName"
+        android:icon="@drawable/ic_sort"
+        android:title="@string/sortByName"
         android:contentDescription="@string/content_description_sort"
         app:showAsAction="never"/>
 </menu>

@@ -143,8 +143,12 @@ class HomeActivity : AppCompatActivity() {
 
                 true
             }
-            R.id.sort   -> {
+            R.id.sortByDate   -> {
                 viewModel.sortByDate()
+                true
+            }
+            R.id.sortByName   -> {
+                viewModel.sortByName()
                 true
             }
             else    -> false
