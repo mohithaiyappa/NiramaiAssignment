@@ -10,8 +10,10 @@
 
 
     <color name="royalBlue">#2174EE</color>         <!-- button background  -->
+    <color name="royalBlueVar">#202174EE</color>         <!-- button background  -->
     <color name="ebonyClay">#1D252D</color>         <!-- black used in project  -->
     <color name="nepal">#8BA6C1</color>
+    <color name="nepalVar">#208BA6C1</color>
     <color name="bismark">#506D85</color>           <!-- unselected filter button text color    -->
     <color name="catskillWhite">#F5F8FA</color>     <!-- unselected filter button background color  -->
     <color name="mountainMeadow">#11BF80</color>    <!-- success green  -->
