@@ -19,4 +19,7 @@
     <string name="content_description_sort">sort projects</string>
     <string name="dateExample">9 Jul 2021</string>
     <string name="prefixCompanyName">for</string>
+    <string name="delete_title">Do You Want To Delete This Project?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 </resources>

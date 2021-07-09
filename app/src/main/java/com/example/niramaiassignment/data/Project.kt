@@ -36,6 +36,9 @@ data class Project(
         @Query("SELECT * FROM project")
         suspend fun getAllProjects(): List<Project>
 
+        @Delete
+        suspend fun deleteProject(project: Project)
+
         @Query("SELECT * FROM project WHERE project_name LIKE :search")
         suspend fun search(search: String?): List<Project>
 

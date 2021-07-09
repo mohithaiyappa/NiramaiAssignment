@@ -49,7 +49,10 @@ class ProjectsAdapter(
             root.setOnClickListener{
                 listener.onItemClick(project)
             }
+            root.setOnLongClickListener {
+                listener.onLongClick(project)
+                true
+            }
         }
-
     }
 }

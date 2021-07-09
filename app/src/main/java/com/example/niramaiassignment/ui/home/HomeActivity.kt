@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
 import androidx.core.view.get
@@ -23,6 +24,7 @@ import com.example.niramaiassignment.utils.RecyclerviewClickListener
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeActivity : AppCompatActivity() {
@@ -53,7 +55,17 @@ class HomeActivity : AppCompatActivity() {
         }
 
         override fun onLongClick(project: Project) {
-
+            MaterialAlertDialogBuilder(this@HomeActivity)
+                .setTitle(resources.getString(R.string.delete_title))
+                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                // Dismiss
+                    dialog.dismiss()
+                }
+                .setPositiveButton(resources.getString(R.string.delete)) { dialog, which ->
+                    // Respond to positive button press
+                    viewModel.deleteProject(project)
+                }
+                .show()
         }
     }
 

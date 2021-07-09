@@ -27,6 +27,11 @@ class HomeViewModel : ViewModel() {
             _projects.postValue(list)
         }
     }
+    fun deleteProject(project: Project){
+        viewModelScope.launch(Dispatchers.IO) {
+            database?.projectDao()?.deleteProject(project)
+        }
+    }
     fun loadCompanyNames(){
         viewModelScope.launch(Dispatchers.IO) {
             val list: List<String> = database?.projectDao()?.getAllCompanyNames() ?: emptyList()
