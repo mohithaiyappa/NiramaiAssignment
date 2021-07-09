@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import com.example.niramaiassignment.NiramaiApplication
 import com.example.niramaiassignment.data.Project
 import com.example.niramaiassignment.databinding.ActivityUpdateDetailsBinding
+import com.example.niramaiassignment.utils.ifEmptyShowError
 import com.example.niramaiassignment.utils.removeHorizontalInsets
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
@@ -77,8 +78,17 @@ class UpdateDetailsActivity : AppCompatActivity() {
         createdOnDate.text = dateFormat.format(selected)
     }
     private fun updateProject(view: View){
+        // return if empty edit text
+        if (projectName.ifEmptyShowError())
+            return
+        if (companyName.ifEmptyShowError())
+            return
+        if (shortDesc.ifEmptyShowError())
+            return
+        if (longDesc.ifEmptyShowError())
+            return
+
         viewModel.project?.let { project->
-            //date is added to view model on successful date select
             //add values in edit text to project
             project.projectName = projectName.text.toString()
             project.companyName = companyName.text.toString()

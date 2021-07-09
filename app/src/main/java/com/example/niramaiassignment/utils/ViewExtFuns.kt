@@ -29,3 +29,13 @@ fun EditText.removeHorizontalInsets(): EditText {
     }
     return this
 }
+fun EditText.ifEmptyShowError(): Boolean{
+    return if(text.toString().isNullOrEmpty()){
+        error = "Field Should Not Be Empty"
+        true
+    }else {
+        error = null
+        false
+    }
+
+}
