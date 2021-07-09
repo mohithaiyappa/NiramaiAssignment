@@ -17,4 +17,6 @@
     <string name="sortByDate">Sort By Date</string>
     <string name="sortByName">Sort By Name</string>
     <string name="content_description_sort">sort projects</string>
+    <string name="dateExample">9 Jul 2021</string>
+    <string name="prefixCompanyName">for</string>
 </resources>

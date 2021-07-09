@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="9dp"
     android:layout_marginHorizontal="16dp"
-    app:contentPadding="16dp"
-    app:cardCornerRadius="6dp">
+    android:layout_marginVertical="9dp"
+    app:cardCornerRadius="6dp"
+    app:contentPadding="16dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,75 +17,59 @@
         android:padding="4dp">
 
         <TextView
-            android:id="@+id/labelProjectName"
+            android:id="@+id/fieldDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_sans"
+            android:text="@string/dateExample"
+            android:textColor="@color/ebonyClay"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/project_label"
-            style="@style/LabelTextView1"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/fieldProjectName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            style="@style/TextField"
-            android:text="@string/project_name"
-            app:layout_constraintTop_toBottomOf="@id/labelProjectName" />
-        <TextView
-            android:id="@+id/labelCompanyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/company_label"
-            style="@style/LabelTextView1"
-            app:layout_constraintTop_toBottomOf="@id/fieldProjectName"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:fontFamily="@font/ibm_plex_sans_medium"
+            android:text="@string/project_name"
+            android:textColor="@color/ebonyClay"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fieldDate" />
+
+        <TextView
+            android:id="@+id/prefixCompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_sans_medium_italic"
+            android:text="@string/prefixCompanyName"
+            android:textColor="@color/ebonyClay"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fieldProjectName" />
+
         <TextView
             android:id="@+id/fieldCompanyName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            style="@style/TextField"
-            android:text="@string/company_name"
-            app:layout_constraintTop_toBottomOf="@id/labelCompanyName"
-            app:layout_constraintStart_toStartOf="parent"/>
-        <TextView
-            android:id="@+id/labelShortDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/short_description"
-            style="@style/LabelTextView1"
-            app:layout_constraintTop_toBottomOf="@id/fieldCompanyName"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:layout_marginStart="7dp"
+            android:fontFamily="@font/ibm_plex_sans_medium"
+            android:text="@string/company_name"
+            android:textColor="@color/ebonyClay"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/prefixCompanyName"
+            app:layout_constraintTop_toBottomOf="@id/fieldProjectName" />
+
         <TextView
             android:id="@+id/fieldShortDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            style="@style/TextField"
+            android:fontFamily="@font/ibm_plex_sans_medium_italic"
             android:text="@string/short_description"
-            app:layout_constraintTop_toBottomOf="@id/labelShortDesc"
-            app:layout_constraintStart_toStartOf="parent"/>
-        <TextView
-            android:id="@+id/labelDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:text="Created On"
-            style="@style/LabelTextView1"
-            app:layout_constraintTop_toTopOf="@id/fieldDate"
-            app:layout_constraintBottom_toBottomOf="@id/fieldDate"
-            app:layout_constraintEnd_toStartOf="@id/fieldDate"/>
-        <TextView
-            android:id="@+id/fieldDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/LabelTextView1"
-            android:text="8 Jul 2021"
-            app:layout_constraintTop_toTopOf="@id/labelProjectName"
-            app:layout_constraintBottom_toBottomOf="@id/labelProjectName"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
+            android:textColor="@color/ebonyClay"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/fieldCompanyName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
