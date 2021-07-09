@@ -131,6 +131,10 @@ class HomeActivity : AppCompatActivity() {
                         return false
                     }
                     override fun onQueryTextChange(newText: String?): Boolean {
+                        if(newText.isNullOrEmpty()){
+                            viewModel.loadAllProjects()
+                        }
+
                         return false
                     }
                 })
