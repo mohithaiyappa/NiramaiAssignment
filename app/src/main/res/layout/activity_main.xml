@@ -39,7 +39,9 @@
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                app:selectionRequired="true"/>
         </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -47,7 +49,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            tools:listitem="@layout/layout_item_project" />
+            tools:listitem="@layout/layout_item_project"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <TextView
+            android:id="@+id/noItemInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No Projects Found"
+            android:gravity="center"
+            android:fontFamily="@font/ibm_plex_sans_medium_italic"
+            android:visibility="visible"
+            tools:visibility="gone"/>
     </LinearLayout>
 
 

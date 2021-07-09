@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.HorizontalScrollView
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +41,8 @@ class HomeActivity : AppCompatActivity() {
         get() = binding.chipScrollView
     private val chipGroup: ChipGroup
         get() = binding.chipGroup
+    private val noProjectTextView: TextView
+        get() = binding.noItemInfo
 
     private val recyclerviewClickListener: RecyclerviewClickListener = object :
         RecyclerviewClickListener{
@@ -69,6 +73,13 @@ class HomeActivity : AppCompatActivity() {
 
 
         viewModel.projects.observe(this) { list ->
+            if(list.isEmpty()){
+                noProjectTextView.visibility = View.VISIBLE
+                projectRecyclerView.visibility = View.GONE
+            }else{
+                noProjectTextView.visibility = View.GONE
+                projectRecyclerView.visibility = View.VISIBLE
+            }
             adapter.submitList(list)
         }
         viewModel.companies.observe(this) {
@@ -132,6 +143,7 @@ class HomeActivity : AppCompatActivity() {
                     }
                     override fun onQueryTextChange(newText: String?): Boolean {
                         if(newText.isNullOrEmpty()){
+                            (chipGroup[0] as Chip).isChecked = true
                             viewModel.loadAllProjects()
                         }else {
                             viewModel.search(newText)
