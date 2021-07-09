@@ -8,16 +8,11 @@
         android:contentDescription="@string/content_description_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
-    <item
-        android:id="@+id/filter"
-        android:icon="@drawable/ic_filter"
-        android:title="@string/filter"
-        android:contentDescription="@string/content_description_filter"
-        app:showAsAction="ifRoom"/>
+
     <item
         android:id="@+id/sort"
         android:icon="@drawable/ic_sort"
         android:title="@string/sort"
         android:contentDescription="@string/content_description_sort"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 </menu>

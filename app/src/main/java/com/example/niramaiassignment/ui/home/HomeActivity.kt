@@ -40,8 +40,6 @@ class HomeActivity : AppCompatActivity() {
     private val chipGroup: ChipGroup
         get() = binding.chipGroup
 
-    private var canFilter: Boolean = false
-
     private val recyclerviewClickListener: RecyclerviewClickListener = object :
         RecyclerviewClickListener{
         override fun onItemClick(project: Project) {
@@ -90,6 +88,15 @@ class HomeActivity : AppCompatActivity() {
 
     private fun addCompanyChips(list: List<String>){
         chipGroup.removeAllViews()
+        //show all chip
+        val allChip = Chip(this).apply {
+            text = "All"
+            isCheckable = true
+            isChecked = true
+            id = ViewCompat.generateViewId()
+            setOnClickListener { viewModel.loadAllProjects() }
+        }
+        chipGroup.addView(allChip)
         chipGroup.isSingleSelection = true
         for (companyName in list)
             chipGroup.addView(getCompanyChip(companyName))
@@ -98,10 +105,7 @@ class HomeActivity : AppCompatActivity() {
         text = companyName
         isCheckable = true
         id = ViewCompat.generateViewId()
-        setOnClickListener {
-            canFilter = true
-            viewModel.filterByCompany(companyName)
-        }
+        setOnClickListener { viewModel.filterByCompany(companyName) }
     }
 
     // Listeners
@@ -109,11 +113,7 @@ class HomeActivity : AppCompatActivity() {
         val i = Intent(this, UpdateDetailsActivity::class.java)
         startActivity(i)
     }
-    private fun onCheckChanged(chipGroup: ChipGroup, id: Int){
-        if (id == View.NO_ID && canFilter){
-            viewModel.loadAllProjects()
-        }
-    }
+    private fun onCheckChanged(chipGroup: ChipGroup, id: Int){}
     private fun onMenuItemClicked(menuItem: MenuItem): Boolean{
         return when (menuItem.itemId) {
             R.id.search -> {
@@ -121,7 +121,7 @@ class HomeActivity : AppCompatActivity() {
                 searchView.queryHint = "Search Projects"
                 searchView.setIconifiedByDefault(false)
                 searchView.isIconified = false
-                searchView.isSubmitButtonEnabled = true
+                searchView.isSubmitButtonEnabled = false
 
                 searchView.setOnQueryTextListener( object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -133,20 +133,13 @@ class HomeActivity : AppCompatActivity() {
                     override fun onQueryTextChange(newText: String?): Boolean {
                         if(newText.isNullOrEmpty()){
                             viewModel.loadAllProjects()
+                        }else {
+                            viewModel.search(newText)
                         }
 
                         return false
                     }
                 })
-
-                true
-            }
-            R.id.filter -> {
-                //show or hide scroll view
-                if(chipScrollView.isVisible)
-                    chipScrollView.visibility = View.GONE
-                else
-                    chipScrollView.visibility = View.VISIBLE
 
                 true
             }
