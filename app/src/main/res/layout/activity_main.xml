@@ -24,6 +24,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/catskillWhite"
         android:orientation="vertical"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -31,7 +32,9 @@
             android:id="@+id/chipScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
+            android:background="@color/mystic"
+            android:scrollbars="none"
+            android:visibility="gone">
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
@@ -43,7 +46,6 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/home_background_gradient"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             tools:listitem="@layout/layout_item_project" />
     </LinearLayout>
@@ -57,6 +59,7 @@
         android:layout_margin="16dp"
         android:backgroundTint="@color/royalBlue"
         android:contentDescription="@string/fab_content_desc"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:rippleColor="@color/catskillWhite"
         app:srcCompat="@drawable/ic_plus_24"
         app:tint="@color/catskillWhite" />
